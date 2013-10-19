@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+	<canvas id="myCanvas" width="2000" height="2000"
+		style="border: 1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+	<script>
+		var ctx;
+		function init() {
+			debugger;
+			ctx = document.getElementById('myCanvas').getContext('2d');
+			window.requestAnimationFrame(draw);
+		}
+		init();
+		var time = 0;
+		function draw() {
+
+			var gallaxyX = time;
+			var gallaxyY = time;
+			var sunX = gallaxyX + 100 * Math.sin((Math.PI / 180) * time);
+			var sunY = gallaxyY + 100 * Math.cos((Math.PI / 180) * time);
+			var earthX = sunX + 50 * Math.sin((Math.PI / 180) * 5 * time);
+			var earthY = sunY + 50 * Math.cos((Math.PI / 180) * 5 * time);
+			var moonX = earthX + 20 * Math.sin((Math.PI / 180) * 10 * time);
+			var moonY = earthY + 20 * Math.cos((Math.PI / 180) * 10 * time);
+			ctx.beginPath();
+			//moon
+			ctx.arc(moonX, moonY, 2, 0, 2 * Math.PI);
+			ctx.stroke();
+
+			ctx.beginPath();
+			//earth
+			ctx.arc(earthX, earthY, 5, 0, 2 * Math.PI);
+			ctx.stroke();
+
+			ctx.beginPath();
+			//sun
+			ctx.arc(sunX, sunY, 5, 0, 2 * Math.PI);
+			ctx.stroke();
+
+			ctx.beginPath();
+			//gallaxy
+			ctx.arc(gallaxyX, gallaxyY, 5, 0, 2 * Math.PI);
+			ctx.stroke();
+
+			time = time + 1;
+			window.requestAnimationFrame(draw);
+		}
+	</script>
+
+</body>
+</html>
